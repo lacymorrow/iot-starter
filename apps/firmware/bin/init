@@ -1,0 +1,114 @@
+#!/bin/sh
+
+# Prevent Sleep
+xset -dpms
+xset s 0
+
+# Initialize hardware
+echo ">Booting Smartcloud..."
+echo "-*- Init -*-"
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+# If git doesn't exist, this shouldn't even be here, but start over
+if ! command -v git &> /dev/null
+then
+    echo "-*- Install -*-"
+	sudo bash <(curl -s https://raw.githubusercontent.com/lacymorrow/iot-firmware/main/install.sh)
+	sudo reboot -n
+fi
+
+# Update
+echo "-*- Update -*-"
+sudo git -C /home/pi/firmware pull
+
+
+# Check if we have a first run
+if [ ! -e /home/pi/.first_run ]; then
+	sudo bash /home/pi/firmware/bin/setup/first-run.sh
+fi
+
+# Allow opening X windows by anyone (allows opening windows from ssh)
+export DISPLAY=:0
+xhost +
+
+# Start the app
+sudo bash /home/pi/firmware/bin/boot.sh
+
+
+
+
+
+
+
+
+
+
+# # Driver setup
+
+# # Echo 'Some simple permissions (oxymoron?) are preventing the GPIO inits'
+# # We can probably remove these two lines as long as this is run as root
+# # sudo chgrp -R pi /sys/class/gpio
+# # sudo chmod -R g+rw /sys/class/gpio
+
+# # Start the python server
+# # cd /var/www/html
+# # python -m SimpleHTTPServer &
+# # sleep 1s
+
+# # Start the kiosk browser (pyapi)
+# sudo python /home/pi/hackpack-server/pybin/kiosk.py &
+# # /usr/bin/midori -e Fullscreen -e Navigationbar -a /home/pi/hackpack-server/out/index.html
+# # chromium-browser --ignore-certificate-errors --disable-infobars --disable-session-crashed-bubble --no-default-browser-check --no-first-run --kiosk '/home/pi/hackpack-server/out/index.html'
+
+
+# # JIC
+# sleep 7s
+
+# # Driver probe
+# sudo modprobe -i uinput
+
+# # JIC
+# sleep 1s
+
+# # Input drivers
+
+# # Unbreakable loop
+# sudo /home/pi/bin/init/input.sh &
+
+# # Regular driver
+# # sudo python /home/pi/drivers/input/input_driver.py &
+
+
+# # Display drivers
+# sudo /home/pi/bin/init/display.sh
+
+# # # Video Driver setup
+# # sleep 1s
+# # sudo echo "5" > /sys/class/gpio/export
+
+# # # GPIO direction
+# # sleep 1s
+# # sudo echo "out" > /sys/class/gpio/gpio5/direction
+
+# # # Active low, set to 0 to enable
+# # sleep 1s
+# # sudo echo "0" > /sys/class/gpio/gpio5/value
+# # sleep 1s
+
+
+# # Framebuffer
+# sudo /home/pi/drivers/video/fbcp-ili9341 &
+
+
+# # Lights
+# sudo /home/pi/bin/init/lights.sh
+# sudo /home/pi/drivers/leds/open_lightsocket &
+
+# # Display startup lights
+# sleep .1s
+# python /home/pi/drivers/leds/light_client/lightclient.py -r 5

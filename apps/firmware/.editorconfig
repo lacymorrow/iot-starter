@@ -1,0 +1,22 @@
+# Top-most EditorConfig file
+root = true
+
+# Set the default charset to UTF-8
+[*]
+charset = utf-8
+
+# Use spaces for indentation
+indent_style = space
+indent_size = 4
+
+# Trim trailing whitespace
+[*.{py,pyi}]
+trim_trailing_whitespace = true
+
+# Set the end-of-line character to LF (Unix-style)
+[*.{py,pyi}]
+end_of_line = lf
+
+# Set the maximum line length to 80 characters
+[*.{py,pyi}]
+max_line_length = 80

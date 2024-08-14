@@ -1,0 +1,1 @@
+logo.nologo loglevel=0 splash silent quiet

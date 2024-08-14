@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
 	"$schema": "https://turborepo.org/schema.json",
 	"ui": "tui",
 	"tasks": {
@@ -13,7 +12,7 @@
 				"^build"
 			],
 			"outputs": [
-				"node_modules/.cache/tsbuildinfo.json",
+				".cache/tsbuildinfo.json",
 				"dist/**"
 			]
 		},
@@ -23,7 +22,7 @@
 		},
 		"format": {
 			"outputs": [
-				"node_modules/.cache/.prettiercache"
+				".cache/.prettiercache"
 			],
 			"outputLogs": "new-only"
 		},
@@ -33,7 +32,7 @@
 				"^build"
 			],
 			"outputs": [
-				"node_modules/.cache/.eslintcache"
+				".cache/.eslintcache"
 			]
 		},
 		"typecheck": {
@@ -42,7 +41,7 @@
 				"^build"
 			],
 			"outputs": [
-				"node_modules/.cache/tsbuildinfo.json"
+				".cache/tsbuildinfo.json"
 			]
 		},
 		"clean": {
@@ -82,67 +81,4 @@
 		"VERCEL_URL",
 		"npm_lifecycle_event"
 	]
-=======
-  "$schema": "https://turborepo.org/schema.json",
-  "ui": "tui",
-  "tasks": {
-    "topo": {
-      "dependsOn": ["^topo"]
-    },
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".cache/tsbuildinfo.json", "dist/**"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": false
-    },
-    "format": {
-      "outputs": [".cache/.prettiercache"],
-      "outputLogs": "new-only"
-    },
-    "lint": {
-      "dependsOn": ["^topo", "^build"],
-      "outputs": [".cache/.eslintcache"]
-    },
-    "typecheck": {
-      "dependsOn": ["^topo", "^build"],
-      "outputs": [".cache/tsbuildinfo.json"]
-    },
-    "clean": {
-      "cache": false
-    },
-    "//#clean": {
-      "cache": false
-    },
-    "push": {
-      "cache": false,
-      "interactive": true
-    },
-    "studio": {
-      "cache": false,
-      "persistent": true
-    },
-    "ui-add": {
-      "cache": false,
-      "interactive": true
-    }
-  },
-  "globalEnv": [
-    "POSTGRES_URL",
-    "AUTH_DISCORD_ID",
-    "AUTH_DISCORD_SECRET",
-    "AUTH_REDIRECT_PROXY_URL",
-    "AUTH_SECRET",
-    "PORT"
-  ],
-  "globalPassThroughEnv": [
-    "NODE_ENV",
-    "CI",
-    "VERCEL",
-    "VERCEL_ENV",
-    "VERCEL_URL",
-    "npm_lifecycle_event"
-  ]
->>>>>>> upstream/main
 }
