@@ -1,0 +1,4 @@
+{
+  "extends": "@lacy/tsconfig/base.json",
+  "include": ["routes"]
+}

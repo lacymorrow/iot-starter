@@ -1,0 +1,11 @@
+{
+	"extends": "@lacy/tsconfig/internal-package.json",
+	"compilerOptions": {},
+	"include": [
+		"*.ts",
+		"src"
+	],
+	"exclude": [
+		"node_modules"
+	]
+}
