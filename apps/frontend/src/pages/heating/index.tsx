@@ -7,7 +7,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-import { deleteCron, pyget, pyset, updateCron } from '@/lib/py/pyapi';
+import { deleteCron, pyget, pyset, trigger, updateCron } from '@/lib/py/pyapi';
 import pylog from '@/lib/py/pylog';
 import { fahrenheitToCelcius } from '@/utils/fahrenheitToCelcius';
 import { MinusIcon, PlusIcon } from 'lucide-react';
@@ -62,8 +62,9 @@ export default function Heating() {
 			'* * * * * python /home/pi/firmware/apps/firmware/pybin/trigger.py',
 			CRON_NAME,
 		)
-			.then((result) => {
+			.then(async (result) => {
 				pylog(result);
+				await trigger();
 				router.push('/dashboard');
 			})
 			.catch((error) => {
