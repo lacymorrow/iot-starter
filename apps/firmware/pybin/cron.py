@@ -72,10 +72,6 @@ def update(old_name, new_cron_job, new_name):
     try:
         delete_result = delete(old_name)
 
-        # if no new name, use old name
-        if not new_name:
-            new_name = old_name
-
         # if "error" in delete_result:
             # return delete_result
 

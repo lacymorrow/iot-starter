@@ -258,8 +258,11 @@ export const deleteAllCrons = () => {
 export const updateCron = (
 	oldName: string,
 	newCronJob: string,
-	newName: string,
+	newName?: string,
 ) => {
+	if (!newName) {
+		newName = oldName;
+	}
 	return pycall('update_cron_job', {
 		old_name: oldName,
 		new_cron_job: newCronJob,
