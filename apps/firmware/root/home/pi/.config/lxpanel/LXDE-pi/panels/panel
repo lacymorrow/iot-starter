@@ -20,7 +20,7 @@ Global {
   fontcolor=#ffffff
   usefontsize=0
   background=0
-  backgroundfile=/home/pi/firmware/resources/images/wallpaper.png
+  backgroundfile=/home/pi/firmware/apps/firmware/resources/images/wallpaper.png
   iconsize=20
   monitor=0
   point_at_menu=0
@@ -30,47 +30,44 @@ Plugin {
   Config {
     padding=4
     image=start-here
-    system {
-    }
-    separator {
-    }
+    system {}
+    separator {}
     item {
       image=system-run
       command=run
-    }
-    separator {
-    }
+        }
+    separator {}
     item {
       image=system-shutdown
       command=logout
+        }
     }
-  }
 }
 Plugin {
   type=space
   Config {
     Size=4
-  }
+    }
 }
 Plugin {
   type=launchbar
   Config {
     Button {
       id=lxde-x-www-browser.desktop
-    }
+        }
     Button {
       id=pcmanfm.desktop
-    }
+        }
     Button {
       id=lxterminal.desktop
+        }
     }
-  }
 }
 Plugin {
   type=space
   Config {
     Size=8
-  }
+    }
 }
 Plugin {
   type=taskbar
@@ -85,63 +82,59 @@ Plugin {
     MaxTaskWidth=150
     spacing=1
     GroupedTasks=0
-  }
+    }
 }
 Plugin {
   type=space
   Config {
     Size=2
-  }
+    }
 }
 Plugin {
   type=tray
-  Config {
-  }
+  Config {}
 }
 Plugin {
   type=ejecter
   Config {
     AutoHide=1
-  }
+    }
 }
 Plugin {
   type=space
   Config {
     Size=2
-  }
+    }
 }
 Plugin {
   type=bluetooth
-  Config {
-  }
+  Config {}
 }
 Plugin {
   type=space
   Config {
     Size=2
-  }
+    }
 }
 Plugin {
   type=dhcpcdui
-  Config {
-  }
+  Config {}
 }
 Plugin {
   type=space
   Config {
     Size=2
-  }
+    }
 }
 Plugin {
   type=volumepulse
-  Config {
-  }
+  Config {}
 }
 Plugin {
   type=space
   Config {
     Size=2
-  }
+    }
 }
 Plugin {
   type=dclock
@@ -151,27 +144,25 @@ Plugin {
     BoldFont=0
     IconOnly=0
     CenterText=1
-  }
+    }
 }
 Plugin {
   type=space
   Config {
     Size=2
-  }
+    }
 }
 Plugin {
   type=ptbatt
-  Config {
-  }
+  Config {}
 }
 Plugin {
   type=space
   Config {
     Size=2
-  }
+    }
 }
 Plugin {
   type=magnifier
-  Config {
-  }
+  Config {}
 }

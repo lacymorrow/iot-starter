@@ -14,7 +14,7 @@ def on(self):
             [
                 "sudo",
                 "bash",
-                "/home/pi/firmware/bin/util/gpio.sh",
+                "/home/pi/firmware/apps/firmware/bin/util/gpio.sh",
                 "write",
                 device,
                 "1",
@@ -40,7 +40,7 @@ def off(self):
             [
                 "sudo",
                 "bash",
-                "/home/pi/firmware/bin/util/gpio.sh",
+                "/home/pi/firmware/apps/firmware/bin/util/gpio.sh",
                 "write",
                 device,
                 "0",
@@ -63,7 +63,7 @@ def getStatus(self):
     try:
         # Use subprocess.check_output if you expect a response
         process = subprocess.check_output(
-            ["sudo", "bash", "/home/pi/firmware/bin/util/gpio.sh", "read", device],
+            ["sudo", "bash", "/home/pi/firmware/apps/firmware/bin/util/gpio.sh", "read", device],
             stderr=subprocess.STDOUT,
         )
 

@@ -14,7 +14,7 @@ def getTemperature():
     # Get temp/humidity from device
     result = (
         subprocess.check_output(
-            ["sudo", "python", "/home/pi/firmware/drivers/temperhum/temperhum.py", "--nosymbols"]
+            ["sudo", "python", "/home/pi/firmware/apps/firmware/drivers/temperhum/temperhum.py", "--nosymbols"]
         )
         .decode()
         .strip()
@@ -46,10 +46,10 @@ def __main__():
 
     if temp < trigger_temp+0.5:
         print("Turning on")
-        subprocess.check_output(["sudo", "bash", "/home/pi/firmware/bin/util/gpio-on.sh"])
+        subprocess.check_output(["sudo", "bash", "/home/pi/firmware/apps/firmware/bin/util/gpio-on.sh"])
     else:
         print("Turning off")
-        subprocess.check_output(["sudo", "bash", "/home/pi/firmware/bin/util/gpio-off.sh"])
+        subprocess.check_output(["sudo", "bash", "/home/pi/firmware/apps/firmware/bin/util/gpio-off.sh"])
 
 if __name__ == "__main__":
     __main__()

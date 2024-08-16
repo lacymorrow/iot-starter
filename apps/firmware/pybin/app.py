@@ -86,7 +86,7 @@ class Api:
                 [
                     "sudo",
                     "bash",
-                    "/home/pi/firmware/bin/util/gpio.sh",
+                    "/home/pi/firmware/apps/firmware/bin/util/gpio.sh",
                     "write",
                     device,
                     "1",
@@ -114,7 +114,7 @@ class Api:
                 [
                     "sudo",
                     "bash",
-                    "/home/pi/firmware/bin/util/gpio.sh",
+                    "/home/pi/firmware/apps/firmware/bin/util/gpio.sh",
                     "write",
                     device,
                     "0",
@@ -139,7 +139,7 @@ class Api:
         try:
             # Use subprocess.check_output if you expect a response
             process = subprocess.check_output(
-                ["sudo", "bash", "/home/pi/firmware/bin/util/gpio.sh", "read", device],
+                ["sudo", "bash", "/home/pi/firmware/apps/firmware/bin/util/gpio.sh", "read", device],
                 stderr=subprocess.STDOUT,
             )
 
@@ -190,7 +190,7 @@ class Api:
             # Get temp/humidity from device
             result = (
                 subprocess.check_output(
-                    ["sudo", "python", "/home/pi/firmware/drivers/temperhum/temperhum.py", "--nosymbols"],
+                    ["sudo", "python", "/home/pi/firmware/apps/firmware/drivers/temperhum/temperhum.py", "--nosymbols"],
                 )
                 .decode()
                 .strip()
@@ -280,7 +280,7 @@ class Api:
                 [
                     "sudo",
                     "bash",
-                    "/home/pi/firmware/bin/util/connect-wifi-network.sh",
+                    "/home/pi/firmware/apps/firmware/bin/util/connect-wifi-network.sh",
                     ssid,
                     password,
                 ],
@@ -300,7 +300,7 @@ class Api:
     def checkWifiConnection(self):
         try:
             process = subprocess.check_output(
-                ["sudo", "bash", "/home/pi/firmware/bin/util/check-network-curl.sh"],
+                ["sudo", "bash", "/home/pi/firmware/apps/firmware/bin/util/check-network-curl.sh"],
                 stderr=subprocess.STDOUT,
             )
             result = str(process.decode("utf-8")).strip("\n")
@@ -353,7 +353,7 @@ class Api:
         try:
             # Use subprocess.check_output if you expect a response
             process = subprocess.check_output(
-                ["sudo", "bash", "/home/pi/firmware/bin/setup/update.sh"],
+                ["sudo", "bash", "/home/pi/firmware/apps/firmware/bin/setup/update.sh"],
                 stderr=subprocess.STDOUT,
             )
 
@@ -450,7 +450,7 @@ if __name__ == "__main__":
     # https: // pywebview.flowrl.com/guide/api.html  # webview-create-window
     webview.create_window(
         "Smartcloud",
-        url="/home/pi/firmware/out/index.html",
+        url="/home/pi/firmware/apps/frontend/out/index.html",
         js_api=api,
         width=480,
         height=320,

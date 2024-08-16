@@ -18,18 +18,18 @@ fi
 if ! command -v git &> /dev/null
 then
     echo "-*- Install -*-"
-	sudo bash <(curl -s https://raw.githubusercontent.com/lacymorrow/iot-firmware/main/install.sh)
+	sudo bash <(curl -s https://raw.githubusercontent.com/lacymorrow/iot-starter/main/install.sh)
 	sudo reboot -n
 fi
 
 # Update
 echo "-*- Update -*-"
-sudo git -C /home/pi/firmware pull
+sudo git -C /home/pi/firmware/apps/firmware pull
 
 
 # Check if we have a first run
 if [ ! -e /home/pi/.first_run ]; then
-	sudo bash /home/pi/firmware/bin/setup/first-run.sh
+	sudo bash /home/pi/firmware/apps/firmware/bin/setup/first-run.sh
 fi
 
 # Allow opening X windows by anyone (allows opening windows from ssh)
@@ -37,7 +37,7 @@ export DISPLAY=:0
 xhost +
 
 # Start the app
-sudo bash /home/pi/firmware/bin/boot.sh
+sudo bash /home/pi/firmware/apps/firmware/bin/boot.sh
 
 
 
@@ -62,8 +62,8 @@ sudo bash /home/pi/firmware/bin/boot.sh
 
 # # Start the kiosk browser (pyapi)
 # sudo python /home/pi/hackpack-server/pybin/kiosk.py &
-# # /usr/bin/midori -e Fullscreen -e Navigationbar -a /home/pi/hackpack-server/out/index.html
-# # chromium-browser --ignore-certificate-errors --disable-infobars --disable-session-crashed-bubble --no-default-browser-check --no-first-run --kiosk '/home/pi/hackpack-server/out/index.html'
+# # /usr/bin/midori -e Fullscreen -e Navigationbar -a /home/pi/hackpack-server/static/index.html
+# # chromium-browser --ignore-certificate-errors --disable-infobars --disable-session-crashed-bubble --no-default-browser-check --no-first-run --kiosk '/home/pi/hackpack-server/static/index.html'
 
 
 # # JIC

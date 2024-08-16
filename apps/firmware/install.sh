@@ -2,7 +2,8 @@
 
 USERNAME=pi
 PASSWORD=pi
-REPO="https://github.com/lacymorrow/iot-firmware.git"
+REPO="https://github.com/lacymorrow/iot-starter.git"
+RELATIVE_PATH="apps/firmware"
 WIFI_SSID="Castle"
 WIFI_PASSWORD="homesweethome"
 
@@ -30,7 +31,7 @@ echo "> Set pull behavior"
 sudo git -C /home/pi/firmware/ config pull.rebase false
 
 echo "> Make bin folder executable"
-sudo chmod -R 755 /home/pi/firmware/bin
+sudo chmod -R 755 /home/pi/firmware/$RELATIVE_PATH/bin
 
 # Enable SSH
 echo "> Enable SSH"
@@ -41,8 +42,8 @@ echo "> Backup config files"
 sudo cp /boot/config.txt /boot/config.old.txt
 
 # Copy root directory
-sudo cp -R /home/pi/firmware/root/boot /boot/
-sudo cp -R /home/pi/firmware/root/etc/default /etc/default
+sudo cp -R /home/pi/firmware/$RELATIVE_PATH/root/boot /boot/
+sudo cp -R /home/pi/firmware/$RELATIVE_PATH/root/etc/default /etc/default
 
 # Autostart on device boot
 echo "> Copy boot files"
@@ -53,8 +54,8 @@ sudo mkdir -p /home/pi/.config/lxsession /home/pi/.config/lxsession/LXDE-pi
 # sudo cp /home/pi/firmware/root/etc/rc.local /etc/rc.local
 
 # TODO Splashscreen
-sudo cp /home/pi/firmware/root/home/pi/.config/lxpanel/LXDE-pi/panels/panel /home/pi/.config/lxpanel/LXDE-pi/panels/panel
-sudo cp /home/pi/firmware/root/home/pi/.config/lxsession/LXDE-pi/autostart /home/pi/.config/lxsession/LXDE-pi/autostart
+sudo cp /home/pi/firmware/$RELATIVE_PATH/root/home/pi/.config/lxpanel/LXDE-pi/panels/panel /home/pi/.config/lxpanel/LXDE-pi/panels/panel
+sudo cp /home/pi/firmware/$RELATIVE_PATH/root/home/pi/.config/lxsession/LXDE-pi/autostart /home/pi/.config/lxsession/LXDE-pi/autostart
 
 # Set user password
 echo "> Set username/password"
@@ -64,11 +65,11 @@ sudo rm pass.txt
 
 # raspi-config
 echo "> Running Raspi Config"
-sudo bash /home/pi/firmware/bin/setup/raspi-config-setup.sh
+sudo bash /home/pi/firmware/$RELATIVE_PATH/bin/setup/raspi-config-setup.sh
 
 # Delete Raspi-config wizard
 echo "> Delete Raspi setup wizard"
-sudo cp /etc/xdg/autostart/piwiz.desktop /home/pi/firmware
+sudo cp /etc/xdg/autostart/piwiz.desktop /home/pi/firmware/$RELATIVE_PATH
 sudo rm /etc/xdg/autostart/piwiz.desktop
 
 # TODO REMOVE: Setup home wifi network; replace <ssid> and <password>
@@ -77,20 +78,20 @@ sudo rm /etc/xdg/autostart/piwiz.desktop
 if [ -z "$WIFI_SSID" ] || [ -z "$WIFI_PASSWORD" ]; then
 	echo "> Wifi credentials not set, skipping"
 else
-	sudo bash /home/pi/firmware/bin/util/connect-wifi-network.sh $WIFI_SSID $WIFI_PASSWORD
+	sudo bash /home/pi/firmware/$RELATIVE_PATH/bin/util/connect-wifi-network.sh $WIFI_SSID $WIFI_PASSWORD
 fi
 
 echo "-*- First Run -*-"
-sudo bash /home/pi/firmware/bin/setup/first-run.sh
+sudo bash /home/pi/firmware/$RELATIVE_PATH/bin/setup/first-run.sh
 
 # Install Temp/Humidity Drivers
 echo "> Install temp/humidity"
-bash /home/pi/firmware/bin/setup/install-temperhum.sh
+bash /home/pi/firmware/$RELATIVE_PATH/bin/setup/install-temperhum.sh
 
 # Install display drivers
 # This forces a reboot
 echo "> Install display"
-sudo bash /home/pi/firmware/bin/setup/install-display.sh
+sudo bash /home/pi/firmware/$RELATIVE_PATH/bin/setup/install-display.sh
 
 # Reboot (if display script didn't already)
 sudo reboot

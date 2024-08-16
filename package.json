@@ -7,6 +7,7 @@
 	"packageManager": "pnpm@9.6.0",
 	"scripts": {
 		"build": "turbo run build",
+		"export": "turbo run export",
 		"clean": "git clean -xdf node_modules",
 		"clean:workspaces": "turbo run clean",
 		"db:push": "turbo -F @lacy/db push",

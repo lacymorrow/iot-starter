@@ -13,7 +13,7 @@ Use your favorite frontend framework with your choice of backend programming to 
 With a fresh Raspberry Pi running RaspberryPi OS (Raspbian):
 
 - Open terminal or ssh in (if you've already enabled it)
-- Run: `bash <(curl -s https://raw.githubusercontent.com/lacymorrow/iot-firmware/main/install.sh)`
+- Run: `bash <(curl -s https://raw.githubusercontent.com/lacymorrow/iot-starter/main/install.sh)`
 
 ## Under the hood:
 
@@ -34,9 +34,9 @@ With a fresh Raspberry Pi running RaspberryPi OS (Raspbian):
 ### Handy Commands:
 
 - `sudo git -C /home/pi/firmware pull` to update the firmware
-- `sudo python /home/pi/firmware/drivers/temperhum/temperhum.py` to test the temperature and humidity sensor
-- `sudo bash /home/pi/firmware/bin/init` to run the app
-- `sudo bash /home/pi/firmware/bin/setup/update.sh` to update the system
+- `sudo python /home/pi/firmware/apps/firmware/drivers/temperhum/temperhum.py` to test the temperature and humidity sensor
+- `sudo bash /home/pi/firmware/apps/firmware/bin/init` to run the app
+- `sudo bash /home/pi/firmware/apps/firmware/bin/setup/update.sh` to update the system
 - `sudo tail -f /proc/PID/fd/1` to see the logs
 - `sudo kill -9 PID` to kill the process
 - `sudo reboot 0` to reboot the system

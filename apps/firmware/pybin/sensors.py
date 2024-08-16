@@ -11,7 +11,7 @@ def getTemperatureHumidity(self):
         # Get temp/humidity from device
         result = (
             subprocess.check_output(
-                ["sudo", "python", "/home/pi/firmware/drivers/temperhum/temperhum.py", "--nosymbols"]
+                ["sudo", "python", "/home/pi/firmware/apps/firmware/drivers/temperhum/temperhum.py", "--nosymbols"]
             )
             .decode()
             .strip()
