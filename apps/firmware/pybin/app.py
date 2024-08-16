@@ -422,6 +422,22 @@ class Api:
         self.log("update_cron_job: " + str(result))
         return json.dumps(result)
 
+    def trigger(self):
+        try:
+            # Use subprocess.check_output if you expect a response
+            process = subprocess.check_output(
+                ["sudo", "python", "/home/pi/firmware/apps/firmware/pybin/trigger.py"],
+                stderr=subprocess.STDOUT,
+            )
+
+            response = {"message": str(process.decode("utf-8"))}
+        except:
+            response = {
+                "error": "Could not trigger",
+            }
+
+        return json.dumps(response)
+
     def shutdown(self):
         self.log("Shutting down the application...")
 
