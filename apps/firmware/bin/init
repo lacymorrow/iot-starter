@@ -18,7 +18,7 @@ fi
 if ! command -v git &> /dev/null
 then
     echo "-*- Install -*-"
-	sudo bash < (curl -s https://raw.githubusercontent.com/lacymorrow/iot-starter/main/install.sh)
+	sudo bash -c "$(curl -s https://raw.githubusercontent.com/lacymorrow/iot-starter/main/install.sh)"
 	sudo reboot -n
 fi
 
