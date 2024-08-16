@@ -18,8 +18,13 @@ fi
 if ! command -v git &> /dev/null
 then
     echo "-*- Install -*-"
-	sudo bash -c "$(curl -s https://raw.githubusercontent.com/lacymorrow/iot-starter/main/install.sh)"
-	sudo reboot -n
+    install_script=$(curl -s https://raw.githubusercontent.com/lacymorrow/iot-starter/main/install.sh)
+    if [[ $install_script == *"404: Not Found"* ]]; then
+        echo "Error: Installation script not found. Please check the URL."
+    else
+        sudo bash -c "$install_script"
+        sudo reboot -n
+    fi
 fi
 
 # Update
