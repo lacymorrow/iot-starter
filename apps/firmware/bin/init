@@ -18,13 +18,13 @@ fi
 if ! command -v git &> /dev/null
 then
     echo "-*- Install -*-"
-	sudo bash <(curl -s https://raw.githubusercontent.com/lacymorrow/iot-starter/main/install.sh)
+	sudo bash < (curl -s https://raw.githubusercontent.com/lacymorrow/iot-starter/main/install.sh)
 	sudo reboot -n
 fi
 
 # Update
 echo "-*- Update -*-"
-sudo git -C /home/pi/firmware/apps/firmware pull
+sudo git -C /home/pi/firmware pull
 
 
 # Check if we have a first run
