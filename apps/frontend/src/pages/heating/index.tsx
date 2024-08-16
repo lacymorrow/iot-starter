@@ -59,7 +59,7 @@ export default function Heating() {
 		await pyset(CRON_NAME, celcius);
 		await createCron({
 			name: CRON_NAME,
-			cron: '* * * * * sudo python /home/pi/Desktop/trigger.py',
+			cron: '* * * * * sudo python /home/pi/firmware/apps/firmware/pybin/trigger.py',
 		})
 			.then((result) => {
 				pylog(result);
