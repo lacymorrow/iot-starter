@@ -71,8 +71,14 @@ def delete_all():
 def update(old_name, new_cron_job, new_name):
     try:
         delete_result = delete(old_name)
-        if "error" in delete_result:
-            return delete_result
+
+        # if no new name, use old name
+        if not new_name:
+            new_name = old_name
+
+        # if "error" in delete_result:
+            # return delete_result
+
         add_result = add(new_cron_job, new_name)
         response = {"message": f"Cron job '{old_name}' updated to '{new_name}'"}
     except Exception as e:
